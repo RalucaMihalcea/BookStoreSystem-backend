@@ -3,10 +3,10 @@ package com.example.bookstoresystembackend.entity;
 import com.example.bookstoresystembackend.boundary.Views;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "T_USER")
