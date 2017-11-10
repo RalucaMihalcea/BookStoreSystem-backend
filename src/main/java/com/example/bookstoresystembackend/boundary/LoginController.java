@@ -17,8 +17,9 @@ public class LoginController {
 
   @PostMapping(path = "/login")
   public @ResponseBody
-  User getUser(@RequestParam(name = "user_name") String username, @RequestParam String password) {
-    return userRepository.findUserByUsernameAndPassword(username, password);
+  //User getUser(@RequestParam(name = "user_name") String username, @RequestParam String password) {
+  User getUser(@RequestBody User user) {
+    return userRepository.findUserByUsernameAndPassword(user.getUsername(), user.getPassword());
   }
 
 }

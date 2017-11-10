@@ -38,6 +38,21 @@ public class User {
     @Column(name = "PASSWORD")
     private String password;
 
+    @JsonView(Views.Internal.class)
+    @NotNull
+    @Column(name = "EMAIL")
+    private String email;
+
+    @JsonView(Views.Internal.class)
+    @NotNull
+    @Column(name = "CONTACT_NO")
+    private String contactNo;
+
+    @JsonView(Views.Internal.class)
+    @NotNull
+    @Column(name = "ADDRESS")
+    private String address;
+
 
     public Long getId() {
         return id;
@@ -77,5 +92,29 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
