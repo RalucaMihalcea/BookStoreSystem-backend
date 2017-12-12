@@ -22,4 +22,12 @@ public class LoginController {
     return userRepository.findUserByUsernameAndPassword(user.getUsername(), user.getPassword());
   }
 
+  @PostMapping(path = "/login2")
+  public @ResponseBody
+    //User getUser(@RequestParam(name = "user_name") String username, @RequestParam String password) {
+  User getUser2(@RequestParam(name = "user_name") String username, @RequestParam String password) {
+    return userRepository.findUserByUsernameAndPassword(username, password);
+  }
+
+
 }

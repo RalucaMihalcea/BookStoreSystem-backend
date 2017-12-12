@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "T_USER")
@@ -53,6 +55,28 @@ public class User {
     @Column(name = "ADDRESS")
     private String address;
 
+
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    private List<Book> books;
+
+//    public List<Book> getBooks() {
+//        return books;
+//    }
+
+    public User(String username, String firstName, String lastName, String password, String email, String contactNo, String address) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.contactNo = contactNo;
+        this.address = address;
+
+    }
+
+    public User() {
+
+    }
 
     public Long getId() {
         return id;
@@ -117,4 +141,5 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }
