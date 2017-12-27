@@ -51,7 +51,7 @@ public class BookController {
     public @ResponseBody
         //@RequestParam(name = "user_name") String username, @RequestParam String password
     List<Book> getBook(@RequestBody Book book) {
-        return bookRepository.findBookByCategory(book.getCategory());//foodRepository.findFoodById(food.getId());//foodRepository.findFoodByFood_name(food.getFood_name()); //foodRepository.findFoodByFood_nameAndCarbohydratesAndProteinsAndFatsAndCategory(food.getFood_name(), food.getCarbohydrates(), food.getProteins(), food.getFats(), food.getCategory());
+        return bookRepository.findBookByCategory(book.getCategory());
     }
 
     @PostMapping(path = "/searchBookByCategory2")
