@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "T_USER")
 public class User {
 
-    @JsonIgnore
+    @JsonView(Views.Public.class)
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,11 +50,6 @@ public class User {
     @Column(name = "CONTACT_NO")
     private String contactNo;
 
-    @JsonView(Views.Internal.class)
-    @NotNull
-    @Column(name = "ADDRESS")
-    private String address;
-
 
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 //    private List<Book> books;
@@ -63,14 +58,13 @@ public class User {
 //        return books;
 //    }
 
-    public User(String username, String firstName, String lastName, String password, String email, String contactNo, String address) {
+    public User(String username, String firstName, String lastName, String password, String email, String contactNo) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
         this.contactNo = contactNo;
-        this.address = address;
 
     }
 
@@ -134,12 +128,5 @@ public class User {
         this.contactNo = contactNo;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
 }

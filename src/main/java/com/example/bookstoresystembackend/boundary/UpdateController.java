@@ -23,17 +23,16 @@ public class UpdateController {
 //    }
 
 
-    @PostMapping(path = "/update")
+    @PostMapping(path = "/update2")
     public @ResponseBody
     String updateUser(@RequestBody User user) {
 
         User oldUser= userRepository.findUserByUsernameAndPassword(user.getUsername(), user.getPassword());
         oldUser.setUsername(user.getUsername());
-        oldUser.setPassword(user.getPassword());
         oldUser.setFirstName(user.getFirstName());
         oldUser.setLastName(user.getLastName());
-        oldUser.setAddress(user.getAddress());
         oldUser.setContactNo(user.getContactNo());
+        oldUser.setPassword(user.getPassword());
         oldUser.setEmail(user.getEmail());
         userRepository.save(oldUser);
         return "Updated user";
@@ -41,21 +40,18 @@ public class UpdateController {
     }
 
 
+    @PostMapping(path = "/updatee")
+    public @ResponseBody
+    String updateUser2(@RequestParam(name = "user_name") String username, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String contactNo) {
 
-//    @PostMapping(path = "/updatee")
-//    public @ResponseBody
-//    String updateUser2(@RequestParam(name = "user_name") String username, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String gender, @RequestParam int height, @RequestParam int weight, @RequestParam int age, @RequestParam String email, @RequestParam String contactNo) {
-//
-//        User oldUser= userRepository.findUserByUsernameAndPassword(username, password);
-//        oldUser.setUsername(username);
-//        oldUser.setPassword(password);
-//        oldUser.setFirstName(user.getFirstName());
-//        oldUser.setLastName(user.getLastName());
-//        oldUser.setAddress(user.getAddress());
-//        oldUser.setContactNo(user.getContactNo());
-//        oldUser.setEmail(user.getEmail());
-//        userRepository.save(oldUser);
-//        return "Updated user";
-//
-//    }
+        User oldUser= userRepository.findUserByUsernameAndPassword(username, password);
+        oldUser.setUsername(username);
+        oldUser.setFirstName(firstName);
+        oldUser.setLastName(lastName);
+        oldUser.setContactNo(contactNo);
+        oldUser.setEmail(email);
+        userRepository.save(oldUser);
+        return "Updated user";
+
+    }
 }

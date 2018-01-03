@@ -28,7 +28,7 @@ public class BookController {
 
     @PostMapping(path = "/addParameters")
     public @ResponseBody
-    String addNewBook2(@RequestParam String title, @RequestParam String author, @RequestParam double price, @RequestParam String namePicture, @RequestParam String category) {
+    String addNewBook2(@RequestParam String title, @RequestParam String author, @RequestParam double price, @RequestParam String namePicture, @RequestParam String category, @RequestParam int stars, @RequestParam String description) {
 
         Book book = new Book();
         book.setTitle(title);
@@ -36,6 +36,8 @@ public class BookController {
         book.setPrice(price);
         book.setNamePicture(namePicture);
         book.setCategory(category);
+        book.setStars(stars);
+        book.setDescription(description);
         bookRepository.save(book);
         return "Book Saved";
     }

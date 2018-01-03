@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class Book {
 
-    @JsonIgnore
+    @JsonView(Views.Public.class)
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,6 +42,16 @@ public class Book {
     @Column(name = "NAMEPICTURE")
     private String namePicture;
 
+    @JsonView(Views.Public.class)
+    @NotNull
+    @Column(name = "STARS")
+    private int stars;
+
+    @JsonView(Views.Public.class)
+    @NotNull
+    @Column(name = "DESCRIPTION")
+    private String description;
+
 //    //legatura many to one catre user
 //    @ManyToOne
 //    @JoinColumn(name = "T_USER_id")
@@ -60,13 +70,22 @@ public class Book {
         this.price = price;
     }
 
+    public Book(String title, String author, double price, int stars) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+        this.stars = stars;
+    }
 
-    public Book(String title, String author, String category, double price, String namePicture) {
+
+    public Book(String title, String author, String category, double price, String namePicture, int stars, String description) {
         this.title = title;
         this.author = author;
         this.category = category;
         this.price = price;
         this.namePicture = namePicture;
+        this.stars = stars;
+        this.description = description;
 
     }
 
@@ -117,5 +136,21 @@ public class Book {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getStars() {
+        return stars;
+    }
+
+    public void setStars(int stars) {
+        this.stars = stars;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
