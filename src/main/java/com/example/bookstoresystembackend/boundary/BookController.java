@@ -26,6 +26,7 @@ public class BookController {
         return "Book Saved";
     }
 
+
     @PostMapping(path = "/addParameters")
     public @ResponseBody
     String addNewBook2(@RequestParam String title, @RequestParam String author, @RequestParam double price, @RequestParam String namePicture, @RequestParam String category, @RequestParam int stars, @RequestParam String description) {

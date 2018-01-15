@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class FavoriteBook {
 
-    @JsonIgnore
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,39 +22,15 @@ public class FavoriteBook {
 
     @JsonView(Views.Public.class)
     @NotNull
-    @Column(name = "TITLE")
-    private String title;
-
-    @JsonView(Views.Public.class)
-    @NotNull
-    @Column(name = "AUTHOR")
-    private String author;
-
-    @JsonView(Views.Public.class)
-    @NotNull
-    @Column(name = "CATEGORY")
-    private String category;
-
-    @JsonView(Views.Public.class)
-    @NotNull
-    @Column(name = "NAMEPICTURE")
-    private String namePicture;
-
-    @JsonView(Views.Public.class)
-    @NotNull
-    @Column(name = "USERNAME")
-    private String username;
+    @Column(name = "IDUSER")
+    private Long idUser;
 
     public FavoriteBook() {
     }
 
-    public FavoriteBook(Long idBook, String title, String author, String category, String namePicture, String username) {
+    public FavoriteBook(Long idBook, Long idUser) {
         this.idBook = idBook;
-        this.title = title;
-        this.author = author;
-        this.category = category;
-        this.namePicture = namePicture;
-        this.username = username;
+        this.idUser = idUser;
     }
 
     public Long getId() {
@@ -74,43 +49,11 @@ public class FavoriteBook {
         this.idBook = idBook;
     }
 
-    public String getTitle() {
-        return title;
+    public Long getIdUser() {
+        return idUser;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getNamePicture() {
-        return namePicture;
-    }
-
-    public void setNamePicture(String namePicture) {
-        this.namePicture = namePicture;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 }

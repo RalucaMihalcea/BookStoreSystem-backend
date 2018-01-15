@@ -8,7 +8,9 @@ import java.util.List;
 public interface FavoriteBookRepository extends JpaRepository<FavoriteBook, Long> {
     // Review findReviewByIdBookAndIdUser(Long idBook, String username);
 
-    List<FavoriteBook> findFavoriteBooksByUsername(String username);
+    List<FavoriteBook> findFavoriteBooksByIdUser(Long idUser);
+    FavoriteBook findFavoriteBooksByIdBookAndIdUser(Long idBook, Long idUser);
+    //FavoriteBook findFavoriteBooksBy
 
 }
 

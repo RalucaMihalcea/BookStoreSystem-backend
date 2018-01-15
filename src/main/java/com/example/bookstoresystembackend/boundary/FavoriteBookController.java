@@ -1,7 +1,11 @@
 package com.example.bookstoresystembackend.boundary;
 
+import com.example.bookstoresystembackend.entity.Book;
 import com.example.bookstoresystembackend.entity.FavoriteBook;
+import com.example.bookstoresystembackend.entity.User;
 import com.example.bookstoresystembackend.repository.FavoriteBookRepository;
+import com.example.bookstoresystembackend.repository.BookRepository;
+import com.example.bookstoresystembackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +18,10 @@ public class FavoriteBookController {
 
     @Autowired
     private FavoriteBookRepository favoriteBookRepository;
+    @Autowired
+    private BookRepository bookRepository;
+    @Autowired
+    private UserRepository userRepository;
 
 
     @PostMapping(path = "/add")
@@ -26,31 +34,39 @@ public class FavoriteBookController {
 
     @PostMapping(path = "/addFavoriteBookParameters")
     public @ResponseBody
-    String addNewFavoriteBook2(@RequestParam Long idBook, @RequestParam String title, @RequestParam String author, @RequestParam String category, @RequestParam String namePicture, @RequestParam String username) {
+    String addNewFavoriteBook2(@RequestParam String title, @RequestParam String author, @RequestParam String username) {
+
+        Book book = bookRepository.findBookByTitleAndAuthor(title, author);
+        User user = userRepository.findByUsername(username);
 
         FavoriteBook favoriteBook = new FavoriteBook();
-        favoriteBook.setIdBook(idBook);
-        favoriteBook.setTitle(title);
-        favoriteBook.setAuthor(author);
-        favoriteBook.setCategory(category);
-        favoriteBook.setNamePicture(namePicture);
-        favoriteBook.setUsername(username);
+        favoriteBook.setIdBook(book.getId());
+        favoriteBook.setIdUser(user.getId());
 
         favoriteBookRepository.save(favoriteBook);
-        return "FavoriteBook Saved";
+        return "Favorite Book Saved";
     }
 
-    //    @PostMapping(path = "/searchReviewByIdBookAndIdUser")
-//    public @ResponseBody
-//        //@RequestParam(name = "user_name") String username, @RequestParam String password
-//    Review getReviewByIdBookAndIdUser(@RequestParam Long idBook, @RequestParam String username) {
-//        return reviewRepository.findReviewByIdBookAndIdUser(idBook, username);
-//    }
-//
-    @PostMapping(path = "/searchFavoriteBookByUsername")
+    @PostMapping(path = "/deleteFavoriteBookParameters")
     public @ResponseBody
-    //@RequestParam(name = "user_name") String username, @RequestParam String password
-    List<FavoriteBook> getFavoriteBookByUsername(@RequestParam String username) {
-        return favoriteBookRepository.findFavoriteBooksByUsername(username);
+    String deleteNewFavoriteBook(@RequestParam Long idBook, @RequestParam String username) {
+
+        User user = userRepository.findByUsername(username);
+
+        FavoriteBook favoriteBook = favoriteBookRepository.findFavoriteBooksByIdBookAndIdUser(idBook, user.getId());
+
+        favoriteBookRepository.delete(favoriteBook);
+        return "Favorite Book Deleted";
     }
+
+    @PostMapping(path = "/selectFavoriteBookForUser")
+    public @ResponseBody
+    List<FavoriteBook> selectFavoriteBooks(@RequestParam String username) {
+
+        User user = userRepository.findByUsername(username);
+
+        return favoriteBookRepository.findFavoriteBooksByIdUser(user.getId());
+    }
+
+
 }
