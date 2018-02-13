@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface BookViewsRepository extends JpaRepository<BookViews, Long> {
-    List<BookViews> findBooksViewsByIdBookAndUsername(Long idBook, String username);
+    List<BookViews> findBooksViewsByUsername(String username);
     BookViews findBookViewsByIdBookAndUsername(Long idBook, String username);
 
 

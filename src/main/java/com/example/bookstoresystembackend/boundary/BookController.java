@@ -61,4 +61,11 @@ public class BookController {
     List<Book> getBook(@RequestParam String category) {
         return bookRepository.findBookByCategory(category);//foodRepository.findFoodById(food.getId());//foodRepository.findFoodByFood_name(food.getFood_name()); //foodRepository.findFoodByFood_nameAndCarbohydratesAndProteinsAndFatsAndCategory(food.getFood_name(), food.getCarbohydrates(), food.getProteins(), food.getFats(), food.getCategory());
     }
+
+    @PostMapping(path = "/searchBookByID")
+    public @ResponseBody
+        //@RequestParam(name = "user_name") String username, @RequestParam String password
+    Book getBook(@RequestParam Long id) {
+        return bookRepository.findBookById(id);//foodRepository.findFoodById(food.getId());//foodRepository.findFoodByFood_name(food.getFood_name()); //foodRepository.findFoodByFood_nameAndCarbohydratesAndProteinsAndFatsAndCategory(food.getFood_name(), food.getCarbohydrates(), food.getProteins(), food.getFats(), food.getCategory());
+    }
 }

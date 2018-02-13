@@ -45,11 +45,11 @@ public class BookViewsController {
 //        return reviewRepository.findReviewByIdBookAndIdUser(idBook, username);
 //    }
 //
-    @PostMapping(path = "/searchBooksViewsByIdBook")
+    @PostMapping(path = "/searchBooksViewsByUsername")
     public @ResponseBody
     //@RequestParam(name = "user_name") String username, @RequestParam String password
-    List<BookViews> getBooksViewsByIdBook(@RequestParam Long idBook, @RequestParam String username) {
-        return bookViewsRepository.findBooksViewsByIdBookAndUsername(idBook, username);
+    List<BookViews> getBooksViewsByIdBook(@RequestParam String username) {
+        return bookViewsRepository.findBooksViewsByUsername(username);
     }
 
     @PostMapping(path = "/searchBookViews")
