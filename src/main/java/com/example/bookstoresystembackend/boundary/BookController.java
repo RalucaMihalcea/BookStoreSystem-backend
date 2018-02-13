@@ -2,9 +2,7 @@ package com.example.bookstoresystembackend.boundary;
 
 
 import com.example.bookstoresystembackend.entity.Book;
-import com.example.bookstoresystembackend.entity.User;
 import com.example.bookstoresystembackend.repository.BookRepository;
-import com.example.bookstoresystembackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

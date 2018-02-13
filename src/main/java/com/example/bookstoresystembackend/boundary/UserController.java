@@ -19,7 +19,7 @@ public class UserController {
 
     @PostMapping(path = "/addUser")
     public @ResponseBody
-    String addNewUser(@RequestParam String username, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String password, @RequestParam  String email, @RequestParam  String contactNo, @RequestParam String address) {
+    String addNewUser(@RequestParam String username, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String password, @RequestParam String email, @RequestParam String contactNo, @RequestParam String address) {
 
         User user = new User();
         user.setUsername(username);
@@ -30,5 +30,19 @@ public class UserController {
         user.setContactNo(contactNo);
         userRepository.save(user);
         return "User Saved";
+    }
+
+    @PostMapping(path = "/getUserByUsername")
+    public @ResponseBody
+    User getUser(@RequestParam String username) {
+        // This returns a JSON or XML with the users
+        return userRepository.findUserByUsername(username);
+    }
+
+    @PostMapping(path = "/getUserByUsernameAndFirstNameAndLastName")
+    public @ResponseBody
+    User getUser2(@RequestParam String username, @RequestParam String firstName, @RequestParam String lastName) {
+        // This returns a JSON or XML with the users
+        return userRepository.findUserByUsernameAndFirstNameAndLastName(username, firstName, lastName);
     }
 }
