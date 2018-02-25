@@ -1,7 +1,7 @@
 package com.example.bookstoresystembackend.entity;
 
-
 import com.example.bookstoresystembackend.boundary.Views;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Calendar;
 
 @Entity
-public class BookViews {
+public class BookViewsAndDate {
 
     @JsonView(Views.Public.class)
     @Id
@@ -24,30 +24,29 @@ public class BookViews {
 
     @JsonView(Views.Public.class)
     @NotNull
-    @Column(name = "USERNAME")
-    private String username;
-
-    @JsonView(Views.Public.class)
-    @NotNull
     @Column(name = "VIEWS")
     private int views;
 
-    public BookViews(int views) {
-        this.views = views;
-    }
+    @JsonView(Views.Public.class)
+    @NotNull
+    @JsonFormat(pattern = "dd-MM-yyyy", timezone = "EET")
+    @Column(name = "DATE")
+    @Temporal(TemporalType.DATE)
+    private Calendar date;
 
-    public BookViews() {
-    }
+    @JsonView(Views.Public.class)
+    @NotNull
+    @Column(name = "USERNAME")
+    private String username;
 
-    public BookViews(String username, int views) {
-        this.username = username;
-        this.views = views;
-    }
-
-    public BookViews(Long idBook, String username, int views) {
+    public BookViewsAndDate(Long idBook, int views, Calendar date, String username) {
         this.idBook = idBook;
-        this.username = username;
         this.views = views;
+        this.date = date;
+        this.username = username;
+    }
+
+    public BookViewsAndDate() {
     }
 
     public Long getId() {
@@ -74,6 +73,14 @@ public class BookViews {
         this.views = views;
     }
 
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
+        this.date = date;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -81,5 +88,4 @@ public class BookViews {
     public void setUsername(String username) {
         this.username = username;
     }
-
 }

@@ -2,6 +2,7 @@ package com.example.bookstoresystembackend.boundary;
 
 
 import com.example.bookstoresystembackend.entity.Book;
+import com.example.bookstoresystembackend.entity.BookViews;
 import com.example.bookstoresystembackend.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,19 +25,20 @@ public class BookController {
         return "Book Saved";
     }
 
-
     @PostMapping(path = "/addParameters")
     public @ResponseBody
-    String addNewBook2(@RequestParam String title, @RequestParam String author, @RequestParam double price, @RequestParam String namePicture, @RequestParam String category, @RequestParam int stars, @RequestParam String description) {
+    String addNewBook2(@RequestParam String title, @RequestParam String author, @RequestParam double price, @RequestParam String namePicture, @RequestParam String category, @RequestParam int stars, @RequestParam String description, @RequestParam int notified) {
 
         Book book = new Book();
         book.setTitle(title);
+
         book.setAuthor(author);
         book.setPrice(price);
         book.setNamePicture(namePicture);
         book.setCategory(category);
         book.setStars(stars);
         book.setDescription(description);
+        book.setNotified(notified);
         bookRepository.save(book);
         return "Book Saved";
     }
@@ -67,5 +69,17 @@ public class BookController {
         //@RequestParam(name = "user_name") String username, @RequestParam String password
     Book getBook(@RequestParam Long id) {
         return bookRepository.findBookById(id);//foodRepository.findFoodById(food.getId());//foodRepository.findFoodByFood_name(food.getFood_name()); //foodRepository.findFoodByFood_nameAndCarbohydratesAndProteinsAndFatsAndCategory(food.getFood_name(), food.getCarbohydrates(), food.getProteins(), food.getFats(), food.getCategory());
+    }
+
+    @PostMapping(path = "/updateBookNotified")
+    public @ResponseBody
+    String updateBook(@RequestParam String title, @RequestParam String author, @RequestParam int notified) {
+
+        Book oldBook = bookRepository.findBookByTitleAndAuthor(title, author);
+        oldBook.setNotified(notified);
+
+        bookRepository.save(oldBook);
+        return "Updated  book (notified)";
+
     }
 }

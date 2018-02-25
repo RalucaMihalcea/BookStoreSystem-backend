@@ -52,6 +52,12 @@ public class Book {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @JsonView(Views.Public.class)
+    @NotNull
+    @Column(name = "NOTIFIED")
+    private int notified;
+
+
 //    //legatura many to one catre user
 //    @ManyToOne
 //    @JoinColumn(name = "T_USER_id")
@@ -64,11 +70,22 @@ public class Book {
 
     }
 
-    public Book(String title, String author, double price) {
-        this.title = title;
-        this.author = author;
-        this.price = price;
-    }
+//    public Book(String title, String author, String category, double price, String namePicture, int stars, String description, int notified) {
+//        this.title = title;
+//        this.author = author;
+//        this.category = category;
+//        this.price = price;
+//        this.namePicture = namePicture;
+//        this.stars = stars;
+//        this.description = description;
+//        this.notified = notified;
+//    }
+//
+//    public Book(String title, String author, double price) {
+//        this.title = title;
+//        this.author = author;
+//        this.price = price;
+//    }
 
     public Book(String title, String author, double price, int stars) {
         this.title = title;
@@ -152,5 +169,13 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getNotified() {
+        return notified;
+    }
+
+    public void setNotified(int notified) {
+        this.notified = notified;
     }
 }
