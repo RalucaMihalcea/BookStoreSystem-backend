@@ -27,22 +27,27 @@ public class BookViewsAndDate {
     @Column(name = "VIEWS")
     private int views;
 
+//    @JsonView(Views.Public.class)
+//    @NotNull
+//    @JsonFormat(pattern = "dd-MM-yyyy", timezone = "EET")
+//    @Column(name = "DATE")
+//    @Temporal(TemporalType.DATE)
+//    private Calendar date;
+
     @JsonView(Views.Public.class)
     @NotNull
-    @JsonFormat(pattern = "dd-MM-yyyy", timezone = "EET")
-    @Column(name = "DATE")
-    @Temporal(TemporalType.DATE)
-    private Calendar date;
+    @Column(name = "MONTH")
+    private int month;
 
     @JsonView(Views.Public.class)
     @NotNull
     @Column(name = "USERNAME")
     private String username;
 
-    public BookViewsAndDate(Long idBook, int views, Calendar date, String username) {
+    public BookViewsAndDate(Long idBook, int views, int month, String username) {
         this.idBook = idBook;
         this.views = views;
-        this.date = date;
+        this.month = month;
         this.username = username;
     }
 
@@ -73,12 +78,12 @@ public class BookViewsAndDate {
         this.views = views;
     }
 
-    public Calendar getDate() {
-        return date;
+    public int getMonth() {
+        return month;
     }
 
-    public void setDate(Calendar date) {
-        this.date = date;
+    public void setMonth(int month) {
+        this.month = month;
     }
 
     public String getUsername() {

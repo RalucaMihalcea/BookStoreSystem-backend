@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface BookViewsAndDateRepository extends JpaRepository<BookViewsAndDate, Long> {
 
-    List<BookViewsAndDate> findBooksViewsAndDateByIdBookAndDate(Long id, Calendar date);
+    List<BookViewsAndDate> findBooksViewsAndDateByIdBookAndMonth(Long id, int month);
     List<BookViewsAndDate> findBooksViewsAndDateByUsername(String username);
     List<BookViewsAndDate> findBooksViewsAndDateByIdAndUsername(Long id,String username);
-    BookViewsAndDate findBookViewsAndDateByIdBookAndDate(Long idBook, Calendar date);
+    BookViewsAndDate findBookViewsAndDateByIdBookAndMonth(Long idBook, int month);
 
 }

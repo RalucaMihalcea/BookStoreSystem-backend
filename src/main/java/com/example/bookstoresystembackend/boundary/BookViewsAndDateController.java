@@ -30,16 +30,16 @@ public class BookViewsAndDateController {
 
     @PostMapping(path = "/addBookViewsAndDateParameters")
     public @ResponseBody
-    String addNewBookViewsAndDate2(@RequestParam Long idBook, @RequestParam int views, @RequestParam String dateString, @RequestParam String username) throws ParseException {
+    String addNewBookViewsAndDate2(@RequestParam Long idBook, @RequestParam int views, @RequestParam int month, @RequestParam String username) throws ParseException {
 
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(df.parse(dateString));
+//        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(df.parse(dateString));
 
         BookViewsAndDate bookViewsAndDate = new BookViewsAndDate();
         bookViewsAndDate.setIdBook(idBook);
         bookViewsAndDate.setViews(views);
-        bookViewsAndDate.setDate(cal);
+        bookViewsAndDate.setMonth(month);
         bookViewsAndDate.setUsername(username);
 
         bookViewsAndDateRepository.save(bookViewsAndDate);
@@ -72,36 +72,36 @@ public class BookViewsAndDateController {
     @PostMapping(path = "/searchBooksViewsAndDateByIdBookAndDate")
     public @ResponseBody
         //@RequestParam(name = "user_name") String username, @RequestParam String password
-    List<BookViewsAndDate> getBooksViewsAndDateByIdBookViewsAndDates(@RequestParam Long idBook, @RequestParam String dateString) throws ParseException {
+    List<BookViewsAndDate> getBooksViewsAndDateByIdBookViewsAndDates(@RequestParam Long idBook, @RequestParam int month) throws ParseException {
 
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(df.parse(dateString));
-        return bookViewsAndDateRepository.findBooksViewsAndDateByIdBookAndDate(idBook, cal);
+//        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(df.parse(dateString));
+        return bookViewsAndDateRepository.findBooksViewsAndDateByIdBookAndMonth(idBook, month);
     }
 
     @PostMapping(path = "/searchBooksViewsAndDateByIdBookAndDate2")
     public @ResponseBody
         //@RequestParam(name = "user_name") String username, @RequestParam String password
-    BookViewsAndDate getBookViewsAndDateByIdBook(@RequestParam Long idBook, @RequestParam String dateString) throws ParseException {
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(df.parse(dateString));
-        return bookViewsAndDateRepository.findBookViewsAndDateByIdBookAndDate(idBook, cal);
+    BookViewsAndDate getBookViewsAndDateByIdBook(@RequestParam Long idBook, @RequestParam int month) throws ParseException {
+//        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(df.parse(dateString));
+        return bookViewsAndDateRepository.findBookViewsAndDateByIdBookAndMonth(idBook, month);
     }
 
     @PostMapping(path = "/updateBookViewsAndDate")
     public @ResponseBody
-    String updateBookViewsAndDate(@RequestParam Long idBook, @RequestParam int views, @RequestParam String dateString) throws ParseException {
+    String updateBookViewsAndDate(@RequestParam Long idBook, @RequestParam int views, @RequestParam int month) throws ParseException {
 
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(df.parse(dateString));
+//        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(df.parse(dateString));
 
-        BookViewsAndDate oldBookViewsAndDate = bookViewsAndDateRepository.findBookViewsAndDateByIdBookAndDate(idBook, cal);
+        BookViewsAndDate oldBookViewsAndDate = bookViewsAndDateRepository.findBookViewsAndDateByIdBookAndMonth(idBook, month);
         oldBookViewsAndDate.setIdBook(idBook);
         oldBookViewsAndDate.setViews(views);
-        oldBookViewsAndDate.setDate(cal);
+        oldBookViewsAndDate.setMonth(month);
 
         bookViewsAndDateRepository.save(oldBookViewsAndDate);
         return "Updated  bookViewsAndDate";
