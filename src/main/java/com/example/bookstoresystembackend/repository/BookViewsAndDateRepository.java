@@ -13,5 +13,7 @@ public interface BookViewsAndDateRepository extends JpaRepository<BookViewsAndDa
     List<BookViewsAndDate> findBooksViewsAndDateByUsername(String username);
     List<BookViewsAndDate> findBooksViewsAndDateByIdAndUsername(Long id,String username);
     BookViewsAndDate findBookViewsAndDateByIdBookAndMonth(Long idBook, int month);
+    BookViewsAndDate findBookViewsAndDateByIdBookAndUsername(Long id,String username);
+    BookViewsAndDate findBookViewsAndDateByIdBookAndUsernameAndMonth(Long idBook, String username, int month);
 
 }

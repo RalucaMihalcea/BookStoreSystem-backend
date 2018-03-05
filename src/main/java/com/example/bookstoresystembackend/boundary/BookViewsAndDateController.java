@@ -56,9 +56,9 @@ public class BookViewsAndDateController {
     @PostMapping(path = "/searchBooksViewsAndDateByIdAndUsername")
     public @ResponseBody
         //@RequestParam(name = "user_name") String username, @RequestParam String password
-    List<BookViewsAndDate> getBooksViewsAndDateByIdAndUsername(@RequestParam Long id, @RequestParam String username) throws ParseException {
+    BookViewsAndDate getBooksViewsAndDateByIdAndUsername(@RequestParam Long idBook, @RequestParam String username) throws ParseException {
 
-        return bookViewsAndDateRepository.findBooksViewsAndDateByIdAndUsername(id, username);
+        return bookViewsAndDateRepository.findBookViewsAndDateByIdBookAndUsername(idBook, username);
     }
 
     @PostMapping(path = "/searchBooksViewsAndDateByUsername")
@@ -92,16 +92,14 @@ public class BookViewsAndDateController {
 
     @PostMapping(path = "/updateBookViewsAndDate")
     public @ResponseBody
-    String updateBookViewsAndDate(@RequestParam Long idBook, @RequestParam int views, @RequestParam int month) throws ParseException {
+    String updateBookViewsAndDate(@RequestParam Long idBook, @RequestParam int views, @RequestParam String username, @RequestParam int month) throws ParseException {
 
 //        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 //        Calendar cal = Calendar.getInstance();
 //        cal.setTime(df.parse(dateString));
 
-        BookViewsAndDate oldBookViewsAndDate = bookViewsAndDateRepository.findBookViewsAndDateByIdBookAndMonth(idBook, month);
-        oldBookViewsAndDate.setIdBook(idBook);
+        BookViewsAndDate oldBookViewsAndDate = bookViewsAndDateRepository.findBookViewsAndDateByIdBookAndUsernameAndMonth(idBook, username, month);
         oldBookViewsAndDate.setViews(views);
-        oldBookViewsAndDate.setMonth(month);
 
         bookViewsAndDateRepository.save(oldBookViewsAndDate);
         return "Updated  bookViewsAndDate";
