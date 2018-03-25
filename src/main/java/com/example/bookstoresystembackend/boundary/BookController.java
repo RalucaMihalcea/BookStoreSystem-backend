@@ -27,7 +27,7 @@ public class BookController {
 
     @PostMapping(path = "/addParameters")
     public @ResponseBody
-    String addNewBook2(@RequestParam String title, @RequestParam String author, @RequestParam double price, @RequestParam String namePicture, @RequestParam String category, @RequestParam int stars, @RequestParam String description, @RequestParam int notified) {
+    String addNewBook2(@RequestParam String title, @RequestParam String author, @RequestParam double price, @RequestParam String namePicture, @RequestParam String category, @RequestParam int stars, @RequestParam String description, @RequestParam int notified, @RequestParam String pdfLink) {
 
         Book book = new Book();
         book.setTitle(title);
@@ -39,6 +39,7 @@ public class BookController {
         book.setStars(stars);
         book.setDescription(description);
         book.setNotified(notified);
+        book.setPdfLink(pdfLink);
         bookRepository.save(book);
         return "Book Saved";
     }
@@ -80,6 +81,28 @@ public class BookController {
 
         bookRepository.save(oldBook);
         return "Updated  book (notified)";
+
+    }
+    @PostMapping(path = "/updateBookPdfLink")
+    public @ResponseBody
+    String updateBookPdfLink(@RequestParam String title, @RequestParam String author, @RequestParam String pdfLink) {
+
+        Book oldBook = bookRepository.findBookByTitleAndAuthor(title, author);
+        oldBook.setPdfLink(pdfLink);
+
+        bookRepository.save(oldBook);
+        return "Updated  book (pdfLink)";
+    }
+
+    @PostMapping(path = "/updateBookAudioLink")
+    public @ResponseBody
+    String updateBookAudioLink(@RequestParam String title, @RequestParam String author, @RequestParam String audioLink) {
+
+        Book oldBook = bookRepository.findBookByTitleAndAuthor(title, author);
+        oldBook.setAudioLink(audioLink);
+
+        bookRepository.save(oldBook);
+        return "Updated  book (audioLink)";
 
     }
 }

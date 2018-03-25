@@ -57,35 +57,19 @@ public class Book {
     @Column(name = "NOTIFIED")
     private int notified;
 
+    @JsonView(Views.Public.class)
+    @NotNull
+    @Column(name = "PDFLINK")
+    private String pdfLink;
 
-//    //legatura many to one catre user
-//    @ManyToOne
-//    @JoinColumn(name = "T_USER_id")
-//    private User user;
-//    public User getUser() {
-//        return user;
-//    }
+    @JsonView(Views.Public.class)
+    @NotNull
+    @Column(name = "AUDIOLINK")
+    private String audioLink;
 
     public Book() {
 
     }
-
-//    public Book(String title, String author, String category, double price, String namePicture, int stars, String description, int notified) {
-//        this.title = title;
-//        this.author = author;
-//        this.category = category;
-//        this.price = price;
-//        this.namePicture = namePicture;
-//        this.stars = stars;
-//        this.description = description;
-//        this.notified = notified;
-//    }
-//
-//    public Book(String title, String author, double price) {
-//        this.title = title;
-//        this.author = author;
-//        this.price = price;
-//    }
 
     public Book(String title, String author, double price, int stars) {
         this.title = title;
@@ -94,8 +78,7 @@ public class Book {
         this.stars = stars;
     }
 
-
-    public Book(String title, String author, String category, double price, String namePicture, int stars, String description) {
+    public Book(String title, String author, String category, double price, String namePicture, int stars, String description, String pdfLink, String audioLink) {
         this.title = title;
         this.author = author;
         this.category = category;
@@ -103,7 +86,8 @@ public class Book {
         this.namePicture = namePicture;
         this.stars = stars;
         this.description = description;
-
+        this.pdfLink = pdfLink;
+        this.audioLink = audioLink;
     }
 
     public Long getId() {
@@ -137,7 +121,6 @@ public class Book {
     public void setPrice(double price) {
         this.price = price;
     }
-
 
     public String getNamePicture() {
         return namePicture;
@@ -177,5 +160,21 @@ public class Book {
 
     public void setNotified(int notified) {
         this.notified = notified;
+    }
+
+    public void setPdfLink(String pdfLink) {
+        this.pdfLink = pdfLink;
+    }
+
+    public String getPdfLink() {
+        return pdfLink;
+    }
+
+    public String getAudioLink() {
+        return audioLink;
+    }
+
+    public void setAudioLink(String audioLink) {
+        this.audioLink = audioLink;
     }
 }
