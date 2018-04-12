@@ -105,4 +105,16 @@ public class BookController {
         return "Updated  book (audioLink)";
 
     }
+
+    @PostMapping(path = "/updateBookImageLink")
+    public @ResponseBody
+    String updateBookImageLink(@RequestParam String title, @RequestParam String author, @RequestParam String imageLink) {
+
+        Book oldBook = bookRepository.findBookByTitleAndAuthor(title, author);
+        oldBook.setImageLink(imageLink);
+
+        bookRepository.save(oldBook);
+        return "Updated  book (imageLink)";
+
+    }
 }

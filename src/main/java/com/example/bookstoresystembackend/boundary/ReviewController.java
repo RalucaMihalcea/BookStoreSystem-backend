@@ -25,7 +25,10 @@ public class ReviewController {
 
     @PostMapping(path = "/addReviewParameters")
     public @ResponseBody
-    String addNewReview2(@RequestParam Long idBook, @RequestParam String username, @RequestParam String textReview, @RequestParam int starReview) {
+    String addNewReview2(@RequestParam Long idBook,
+                         @RequestParam String username,
+                         @RequestParam String textReview,
+                         @RequestParam int starReview) {
 
         Review review = new Review();
         review.setIdBook(idBook);

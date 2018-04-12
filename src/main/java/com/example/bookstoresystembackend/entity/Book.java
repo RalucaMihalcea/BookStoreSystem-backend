@@ -67,6 +67,11 @@ public class Book {
     @Column(name = "AUDIOLINK")
     private String audioLink;
 
+    @JsonView(Views.Public.class)
+    @NotNull
+    @Column(name = "IMAGELINK")
+    private String imageLink;
+
     public Book() {
 
     }
@@ -78,7 +83,7 @@ public class Book {
         this.stars = stars;
     }
 
-    public Book(String title, String author, String category, double price, String namePicture, int stars, String description, String pdfLink, String audioLink) {
+    public Book(String title, String author, String category, double price, String namePicture, int stars, String description, String pdfLink, String audioLink, String imageLink) {
         this.title = title;
         this.author = author;
         this.category = category;
@@ -88,6 +93,7 @@ public class Book {
         this.description = description;
         this.pdfLink = pdfLink;
         this.audioLink = audioLink;
+        this.imageLink = imageLink;
     }
 
     public Long getId() {
@@ -176,5 +182,13 @@ public class Book {
 
     public void setAudioLink(String audioLink) {
         this.audioLink = audioLink;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 }
