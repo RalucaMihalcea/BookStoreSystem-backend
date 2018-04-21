@@ -1,6 +1,9 @@
 spring:
-  jpa.hibernate:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
       ddl-auto: update
+
   datasource:
     url: @database.url@
     username: @database.user@
