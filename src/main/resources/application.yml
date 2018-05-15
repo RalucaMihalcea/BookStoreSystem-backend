@@ -10,4 +10,6 @@ spring:
     password: @database.password@
     driver-class-name: com.mysql.jdbc.Driver
 
+logging.file: backend.log
+
 server.port: @server.port@
