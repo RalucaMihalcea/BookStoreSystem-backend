@@ -105,6 +105,19 @@ public class BookController {
 //
 //    }
 
+    @PostMapping(path = "/updateBookDescription")
+    public @ResponseBody
+    String updateBookDescription(@RequestParam String title, @RequestParam String author, @RequestParam String description) {
+
+        Book oldBook = bookRepository.findBookByTitleAndAuthor(title, author);
+        oldBook.setDescription(description);
+
+        LOG.info("Before update description field of the book entity");
+        bookRepository.save(oldBook);
+        LOG.info("After update description field of the book entity");
+        return "Updated  book (description)";
+    }
+
     @PostMapping(path = "/updateBookPdfLink")
     public @ResponseBody
     String updateBookPdfLink(@RequestParam String title, @RequestParam String author, @RequestParam String pdfLink) {
