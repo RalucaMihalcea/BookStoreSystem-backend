@@ -1,0 +1,1 @@
+update db_bookstore.t_user set password = MD5(password); 
